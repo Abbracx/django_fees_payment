@@ -1,0 +1,60 @@
+body{
+	/*margin-top: 50px;*/
+	background: #AAA
+}
+
+.checkbox label{
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.login_form{
+	margin-top: 70px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-element {
+    list-style-type: none;
+    display: inline-flex;
+}
+
+ul li {
+	padding-left: 10px;
+}
+
+
+.fees{
+    border-bottom: 1px solid #BBB;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+}
+
+#file_label_span:hover {
+    background-color: #286090;
+}
+
+/* Customization of scroll-bar*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #262626; 
+  border-radius: 6px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey; 
+}

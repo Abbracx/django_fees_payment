@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h3 class="text-center">Register</h3>
+                    <hr>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Firstname</label>
+                                    {{ user_form.firstname }}
+                                </div>
+                                {% if 'firstname' in errors %}
+                                    <strong>{{ errors.firstname}}</strong>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Lastname</label>
+                                    {{ user_form.lastname }}
+                                </div>
+                                {% if 'lastname' in errors %}
+                                    <strong>{{ errors.lastname}}</strong>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Username</label>
+                            {{ user_form.username }}
+                            {% if user_avl_err %}
+                                <div class='alert alert-danger'>
+                                   <strong>{{ user_avl_err }}</strong>
+                                </div>
+                            {% endif %}
+                            {% if 'username' in errors %}
+                                <strong>{{ errors.username}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            {{ user_form.email }}
+                            {% if 'email' in errors %}
+                                <strong>{{ errors.email}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Password</label>
+                            {{ user_form.password }}
+                            {% if 'password' in errors %}
+                                <strong>{{ errors.password}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Birthdate</label>
+                            {{ user_form.birth_date }}
+                            {% if 'birth_date' in errors %}
+                                <strong>{{ errors.birth_date}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Mobile</label>
+                            {{ user_form.mobile }}
+                            {% if 'mobile' in errors %}
+                                <strong>{{ errors.mobile}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Enrollment</label>
+                            {{ user_form.enrollment }}
+                            {% if enroll_avl_err %}
+                                <div class='alert alert-danger'>
+                                   <strong>{{ enroll_avl_err }}</strong>
+                                </div>
+                            {% endif %}
+                            {% if 'enrollment' in errors %}
+                                <strong>{{ errors.enrollment}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Institute</label>
+                            {{ user_form.institute }}
+                            {% if 'institute' in errors %}
+                                <strong>{{ errors.institute}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group" id="branch_div">
+                            <label class="col-sm-2 col-form-label">Branch</label>
+                            {{ user_form.branch }}
+                            {% if 'branch' in errors %}
+                                <strong>{{ errors.branch}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Course</label>
+                            {{ user_form.course }}
+                            {% if 'course' in errors %}
+                                <strong>{{ errors.course}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Gender</label>
+                            {{ user_form.gender }}
+                            {% if 'gender' in errors %}
+                                <strong>{{ errors.gender}}</strong>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+    </script>
+{% endblock %}

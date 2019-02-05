@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h3 class="text-center">Payment Details</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Order Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">{{ order.name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Total Amount</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">{{ order.amount }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Fees Selected</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">{{ order.fees_charged }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <form action="/charge" method="POST">
+                                {% csrf_token %}
+                                <script
+                                    src="https://checkout.razorpay.com/v1/checkout.js"
+                                    data-key="rzp_test_pMQIIt4C03HoRt"
+                                    data-amount={{ total_amount }}
+                                    data-name={{order.name}}
+                                    data-description="Fees Payment"
+                                    data-image="{% static 'images/logo.jpg' %}"
+                                    data-netbanking="true"
+                                    data-notes.shopping_order_id={{order.name}}>
+                                </script>
+                                <input type="hidden" name="shopping_order_id" value={{order.name}}>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

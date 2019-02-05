@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    {% if fees_paid %}
+                        <h2 class="text-center">{{ fees_paid }}</h2>
+                    {% else %}
+                        <h3 class="text-center">Welcome {{ user.username }} to Fees payment portal!!</h3>
+                    {% endif %}
+                    <hr>
+                    <form action="/" method="POST" id="payment_form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Firstname</label>
+                                    <input type="text" name="firstname" id="id_firstname" class="form-control" value="{{portal_user.first_name}}" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Lastname</label>
+                                    <input type="text" name="lastname" id="id_lastname" class="form-control" value="{{portal_user.last_name}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Username</label>
+                                    <input type="text" name="username" id="id_username" class="form-control"
+                                    value="{{portal_user.username}}" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Email</label>
+                                    <input type="email" name="email" id="id_email" class="form-control"
+                                    value="{{portal_user.email}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Institute</label>
+                                    <input type="text" name="institute" class="form-control" value="{{portal_user.userprofileinfo.branch.institute_name.name}}" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Branch</label>
+                                    <input type="text" name="branch" class="form-control" value="{{portal_user.userprofileinfo.branch.name}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Course</label>
+                                    <input type="text" name="course" class="form-control" value="{{portal_user.userprofileinfo.course}}" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label">Enrollment</label>
+                                    <input type="text" name="enrollment" id="id_enrollment" class="form-control" value="{{portal_user.userprofileinfo.enrollment}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        {% if fees %}
+                            <h3 class="text-center fees">Fees Section</h3>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-form-label">Fee Types</label><br>
+                                <div class="checkbox-group required checkbox">
+                                    {% for fee in fees %}
+                                        <label class="col-form-label">
+                                            {% if fee.id in fee_paid_ids %}
+                                                <input type="checkbox" class="check_input" name="fees" id="fees_box" value="{{fee.id}}_{{fee.price}}" checked disabled>{{ fee.name  }}
+                                                <small>({{ fee.price }})</small>
+                                            {% else%}
+                                                <input type="checkbox" class="check_input" name="fees" id="fees_box" value="{{fee.id}}_{{fee.price}}">{{ fee.name  }}
+                                                <small>({{ fee.price }})</small>
+                                            {% endif %}
+                                        </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group" id="id_amount_div">
+                                <label class="col-sm-4 col-form-label">Total Amount</label>
+                                <input type="text" name="username" id="id_amount" class="form-control" readonly="">
+                            </div> 
+                        {% endif %}
+                        <div class="row">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary pay_fee_button">Pay Fees</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

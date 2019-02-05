@@ -1,8 +1,3 @@
-# django_fees_payment
-An example project for those who want to learn Django framework
-
-Steps to run project.
-
 Step 1: Install requirements from requirements.txt
 Step 2: migrate database
 Step 3: Add following records for fully functional app
