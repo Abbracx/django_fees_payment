@@ -129,9 +129,9 @@ LOGIN_URL = '/djapp/user_login/'
 
 PG_NAME = "Razorpay"
 PG_DATA = {
-    "merchant_id": "B5XmDR9a867n3i",
-    "api_key": "rzp_test_pMQIIt4C03HoRt",
-    "api_secret": "OEabePWspOIHgWl0KXReutrH"
+    "merchant_id": "Merchant_ID",
+    "api_key": "Your_Test_Key",
+    "api_secret": "Your_API_Secret"
 }
 
 from .logger import LOGGING
