@@ -1,7 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import User
-from django_extensions.db.models import TimeStampedModel
 from django.core.validators import RegexValidator
+from django.db import models
+
+from django_extensions.db.models import TimeStampedModel
 import jsonfield
 
 
@@ -19,6 +20,10 @@ class Institute(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def delete(self, *args, **kwargs):
+        self.is_active = False
+        self.save()
+
 
 class Branch(TimeStampedModel):
     institute_name = models.ForeignKey(Institute, on_delete=models.CASCADE, related_name='branch_institute')
@@ -35,6 +40,10 @@ class Branch(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def delete(self, *args, **kwargs):
+        self.is_active = False
+        self.save()
 
     class Meta:
         verbose_name = 'Branch'
@@ -68,6 +77,10 @@ class Fee(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def delete(self, *args, **kwargs):
+        self.is_active = False
+        self.save()
 
 
 class FeePaid(TimeStampedModel):
