@@ -5,7 +5,7 @@ from djapp.models import UserProfileInfo, User, Institute, Branch, Fee, FeePaid,
 
 class UserProfileInfoInline(admin.StackedInline):
     model = UserProfileInfo
-    can_delete = False
+    can_delete = True
     verbose_name_plural = 'Profile'
     fk_name = 'user'
 
@@ -18,7 +18,7 @@ class CustomUserAdmin(UserAdmin):
 
     def get_queryset(self, request):
         qs = super(CustomUserAdmin, self).get_queryset(request)
-        return qs.filter(is_active=False)
+        return qs.filter(is_active=True)
 
     def delete_selected(modeladmin, request, queryset):
         for usr in queryset:
@@ -28,6 +28,15 @@ class CustomUserAdmin(UserAdmin):
     def delete_model(modeladmin, request, queryset):
         queryset.is_active = False
         queryset.save()
+
+    # def get_actions(self, request):
+    #     """
+    #     Just for info, Action can be removed with below method
+    #     """
+    #     actions = super().get_actions(request)
+    #     if 'delete_selected' in actions:
+    #         del actions['delete_selected']
+    #     return actions
 
 
 admin.site.unregister(User)
