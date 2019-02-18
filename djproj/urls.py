@@ -1,8 +1,8 @@
 from django.conf import settings
-from django.conf.urls import include
+# from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from djapp import views
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('payment_success/', views.payment_success, name='payment_success'),
     path('payment_fail/', views.payment_fail, name='payment_fail'),
     path('import_user/', views.import_user, name='import_user'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

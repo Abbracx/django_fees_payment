@@ -134,4 +134,15 @@ PG_DATA = {
     "api_secret": "Your_API_Secret"
 }
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'test'
+EMAIL_PORT = 465
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 from .logger import LOGGING
