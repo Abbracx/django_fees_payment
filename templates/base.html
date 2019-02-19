@@ -2,9 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Base</title>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/png" href="https://cdn.iconscout.com/icon/free/png-256/django-1-282754.png"/>
         {% block head_block %}
         {% endblock %}
     </head>

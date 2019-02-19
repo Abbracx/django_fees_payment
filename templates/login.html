@@ -1,44 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_block %}
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-    </script>
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+</script>
 {% endblock %}
-
 {% block body_block %}
-    <div class="container login_form">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-5">
-                <div class="jumbotron">
-                    <h3 class="text-center">Login</h3>
-                    <hr>
-
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label class="col-sm-2 col-form-label">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Username" required>
+<div class="container login_form">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+            <div class="jumbotron">
+                <h3 class="text-center">Login</h3>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    {% if error %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-form-label">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password" required>
-                        </div>
-                        {% if error %}
-                            <div class="alert alert-danger">
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-                                <strong>{{ error }}</strong>
-                            </div>
-                        {% endif %}
-                        <div class="row">
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+                <br>
+                <span class="text-center">
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                </span>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
