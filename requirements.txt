@@ -4,6 +4,7 @@ certifi==2018.11.29
 chardet==3.0.4
 Django==2.1.5
 django-extensions==2.1.5
+django-suit==2.0a1
 idna==2.8
 jsonfield==2.0.2
 kombu==4.2.2.post1
